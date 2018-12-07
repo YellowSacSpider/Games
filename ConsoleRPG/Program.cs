@@ -238,12 +238,12 @@ namespace ConsoleRPG
                     break;
                 }
 
-                for(int inta1; character.inta == 1; inta1++)
+                while (true)
                 {
-                    character.dmg++;
-                    break;
-
+                 character.dmg += character.inta
+                     break;
                 }
+               
 
             }
         }
