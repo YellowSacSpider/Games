@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +13,15 @@ namespace ConsoleRPG
         public int lvl = 1;
         public int hp = 100;
         public int dmgBroni = 0;
-        public int dmg = 10;
+		public int inta = 1;
+        public int str = 1;
+        public int dex = 1;
+        public int dmg
+        {
+            get { return 10 + inta + 2 * str + dex; }
+            private set { }
+        }
         public int mana = 100;
-        public int inta = 1;
 
         public string Klasa = null;
 
