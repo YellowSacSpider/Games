@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace ConsoleRPG
@@ -168,7 +168,7 @@ namespace ConsoleRPG
                                 System.Threading.Thread.Sleep(1000);
                                 break;
                             }
-                          }
+                        }
 
                         Console.ReadKey();
                         goto case "menu";
@@ -180,7 +180,7 @@ namespace ConsoleRPG
                         goto case "menu";
                     case "5":
                         Console.Clear();
-                        Console.WriteLine("Życie: " + character.hp + "|" + "Mana: " + character.mana + "|" + "Obrażenia: " + character.dmg + "|" + "Obrażenia Broni: " + character.dmgBroni);
+                        Console.WriteLine("|Życie: " + character.hp + "|" + "\n|Mana: " + character.mana + "|" + "\n|Obrażenia: " + character.dmg + "|" + "\n|Obrażenia Broni: " + character.dmgBroni + "|" + "\n|INT: " + character.inta + "|" + "\n|STR: " + character.str + "|" + "\n|DEX: " + character.dex + "|");
                         Console.Write("> ");
                         break;
                     case "6":
@@ -192,10 +192,6 @@ namespace ConsoleRPG
                         Console.WriteLine("Kliknij dowolny klawisz by powrócic do menu głównego");
                         Console.ReadKey();
                         goto case "menu";
-
-                    case "add dmg":
-                        character.dmg = character.dmg + 10;
-                        goto case "5";
 
                     case "add hp":
                         character.hp = character.hp + 10;
@@ -212,6 +208,15 @@ namespace ConsoleRPG
                     case "set inta 10":
                         character.inta += 10;
                         goto case "menu";
+
+                    case "set str 10":
+                        character.str += 10;
+                        goto case "menu";
+
+                    case "set dex 10":
+                        character.dex += 10;
+                        goto case "menu";
+
                 }
                 character.Ekwipunek[0] = "Broń: " + character.weapon;
                 character.Ekwipunek[1] = "Zbroja: " + character.armor;
@@ -237,13 +242,6 @@ namespace ConsoleRPG
                     character.dmgBroni = 5;
                     break;
                 }
-
-                while (true)
-                {
-                 character.dmg += character.inta
-                     break;
-                }
-               
 
             }
         }
