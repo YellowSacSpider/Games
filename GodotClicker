@@ -1,0 +1,99 @@
+extends Panel
+
+var coin = 0
+var coin_click = 0
+var coin_overtime = 0
+var timer_is_started = false
+#Costs
+var onclick_cost = 5
+var coinsloop_cost = 50
+var coinsloop_buy = false
+var coinsloop_loop_upgrade = false
+
+func _ready():
+	get_node("Button").connect("pressed", self, "_on_Button_pressed")
+	get_node("Button2").connect("pressed", self, "_on_Button2_pressed")
+	get_node("Button3").connect("pressed", self, "_on_Button3_pressed")
+
+func _process(delta):
+	get_node("Label").text = (str(coin))
+	get_node("Label2").text = (str(onclick_cost))
+	get_node("Label3").text = (str(coinsloop_cost))
+	
+	if coin > 1000:
+  		$Label.text = "%dK" % (coin / 1000)
+	else:
+  		$Label.text  = "%d" % coin
+		
+	if onclick_cost > 1000:
+  		$Label2.text = "Cost: %dK" % (onclick_cost / 1000)
+	else:
+  		$Label2.text  = "Cost: %d" % onclick_cost
+		
+	if coinsloop_cost > 1000:
+  		$Label3.text = "Cost: %dK" % (coinsloop_cost / 1000)
+	else:
+  		$Label3.text  = "Cost: %d" % coinsloop_cost
+		
+	if coin > 1000000:
+  		$Label.text = "%dM" % (coin / 1000)
+	else:
+  		$Label.text  = "%d" % coin
+	
+	if coin > 1000000000:
+  		$Label.text = "%dB" % (coin / 1000)
+	else:
+  		$Label.text  = "%d" % coin
+		
+	if coin > 1000000000000:
+  		$Label.text = "%dT" % (coin / 1000)
+	else:
+  		$Label.text  = "%d" % coin
+
+func _on_Button_pressed():
+	coin += 1 + coin_click
+	
+func _on_Button2_pressed():
+	if coin >= onclick_cost:
+		coin -= onclick_cost
+		coin_click += 5
+		onclick_cost *= 2
+	else:
+		print("Brak punktów")
+		
+		
+
+func _on_Button3_pressed():
+	if coin >= coinsloop_cost:
+		coin -= coinsloop_cost
+		coin_overtime += 50
+		coinsloop_cost *= 2
+		coinsloop_buy = true
+	
+		if timer_is_started == false:
+			$Timer.start()
+			timer_is_started = true
+			print("Timer działa")
+	else:
+		print("Brak punktów")
+
+
+func _on_Timer_timeout():
+	coin += coin_overtime
+
+
+func _on_Button4_pressed():
+	if coin >= coinsloop_cost && coinsloop_buy == true && coinsloop_loop_upgrade == false:
+		coin -= coinsloop_cost
+		coinsloop_loop_upgrade = true
+		coin_overtime *= 3
+	
+	if coinsloop_loop_upgrade == true:
+			print('To ulepszenie masz już kupione!')
+	
+	if coinsloop_buy == false:
+			print('Musisz najpierw kupić CoinsLoopa!')
+			
+	if coin < coinsloop_cost:
+			print("Brak Punktów")
+	
