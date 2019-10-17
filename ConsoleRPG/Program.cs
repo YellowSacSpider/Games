@@ -50,68 +50,44 @@ namespace ConsoleRPG
                 {
                     case "1":
                         character.Klasa = "Wojownik";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Laga";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "2":
                         character.Klasa = "Łucznik";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Łuk";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "3":
                         character.Klasa = "Zabójca";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Nóż Kuchenny";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "4":
                         character.Klasa = "Mag";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Mop";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "5":
                         character.Klasa = "Czarnoksiężnik";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Kij";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "6":
                         character.Klasa = "Templariusz";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Drewniana Buława";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "7":
                         character.Klasa = "Wampir";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Kastet";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                     case "8":
                         character.Klasa = "Łupieżca";
-                        Console.WriteLine("Wybrałeś klase: " + character.Klasa);
                         character.weapon = "Długi kij";
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
                         break;
-                    default:
-                        Console.WriteLine("Nieprawidłowa komenda.");
-                        System.Threading.Thread.Sleep(1000);
-                        Console.Clear();
-                        break;
-
                 }
-
+                if(selectClass<1 || selectClass>8){
+                    Console.WriteLine("Nieprawidłowa komenda.");
+                }else {
+                    Console.WriteLine("Wybrałeś klase: " + character.Klasa);
+                }
+                System.Threading.Thread.Sleep(1000);
+                Console.Clear();
             }
             Console.WriteLine("Komendy: menu");
             Console.Write("> ");
