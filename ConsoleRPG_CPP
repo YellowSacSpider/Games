@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+
+struct Player
+{
+	int p_hp = 0, p_maxHP = 0, p_baseDMG = 10, p_inteligence = 0, p_strenght = 0, p_dexerity = 0, p_baseEXP = 0, p_requiredEXP = 0, p_classid = 0, p_armor = 0;
+	
+	std::string p_name = "", p_classname = "";
+};
+
+struct Monster
+{
+	int m_hp = 0, m_maxHP = 0, m_armor = 0, m_dmg = 0;
+	
+	std::string m_name = "";
+};
+
+Monster NewMonster(std::string M_NAME, int M_HP, int M_MAXHP, int M_DMG)
+{
+	Monster M_DATA;
+
+	M_DATA.m_name = M_NAME;
+	M_DATA.m_hp = M_HP;
+	M_DATA.m_maxHP = M_MAXHP;
+	M_DATA.m_dmg = M_DMG;
+
+	return M_DATA;
+}
+
+void ClassGenerator(Player & _ClassGenerator)
+{
+	if (_ClassGenerator.p_classid == 1)
+	{
+		_ClassGenerator.p_classname = "Warrior";
+		_ClassGenerator.p_strenght = 5;
+		_ClassGenerator.p_inteligence = 1;
+		_ClassGenerator.p_dexerity = 1;
+		_ClassGenerator.p_hp = 100;
+		_ClassGenerator.p_maxHP = _ClassGenerator.p_hp;
+		_ClassGenerator.p_baseDMG = _ClassGenerator.p_baseDMG + 2 * _ClassGenerator.p_strenght;
+	}
+}
+
+Player NewPlayer()
+{
+	Player P_DATA;
+
+	std::cout << "Your name: ";
+	std::getline(std::cin, P_DATA.p_name);
+
+	std::cout << "Pick class: ";
+
+	std::cin >> P_DATA.p_classid;
+
+	ClassGenerator(P_DATA);
+
+	return P_DATA;
+
+
+}
+
+
+int main()
+{
+
+	Player P_DATA = NewPlayer();
+	
+	//Monster wolf = NewMonster("wolf", 1, 2, 3);
+	//std::cout << wolf.m_hp;
+
+	std::cout << P_DATA.p_name << "|" << P_DATA.p_classid << "|" << P_DATA.p_classname << "|" << P_DATA.p_baseDMG;
+
+	
+}
