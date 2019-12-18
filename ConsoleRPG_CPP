@@ -3,7 +3,7 @@
 
 struct Player
 {
-	int p_hp = 0, p_maxHP = 0, p_baseDMG = 10, p_inteligence = 0, p_strenght = 0, p_dexerity = 0, p_baseEXP = 0, p_requiredEXP = 0, p_classid = 0, p_armor = 0;
+	int p_hp = 0, p_maxHP = 0, p_baseDMG = 10, p_vitality = 0, p_inteligence = 0, p_strenght = 0, p_dexerity = 0, p_baseEXP = 0, p_requiredEXP = 0, p_classid = 0, p_armor = 0;
 	
 	std::string p_name = "", p_classname = "";
 };
@@ -27,18 +27,31 @@ Monster NewMonster(std::string M_NAME, int M_HP, int M_MAXHP, int M_DMG)
 	return M_DATA;
 }
 
+void UpdateStats(Player& Stats)
+{
+
+	if (Stats.p_classid == 1)
+	{
+		Stats.p_baseDMG += (2 * Stats.p_strenght);
+		Stats.p_hp += (2 * Stats.p_strenght) + (3 * Stats.p_vitality);
+	}
+
+	Stats.p_maxHP = Stats.p_hp;
+}
+
 void ClassGenerator(Player & _ClassGenerator)
 {
 	if (_ClassGenerator.p_classid == 1)
 	{
 		_ClassGenerator.p_classname = "Warrior";
 		_ClassGenerator.p_strenght = 5;
+		_ClassGenerator.p_vitality = 1;
 		_ClassGenerator.p_inteligence = 1;
 		_ClassGenerator.p_dexerity = 1;
 		_ClassGenerator.p_hp = 100;
-		_ClassGenerator.p_maxHP = _ClassGenerator.p_hp;
-		_ClassGenerator.p_baseDMG = _ClassGenerator.p_baseDMG + 2 * _ClassGenerator.p_strenght;
 	}
+
+	UpdateStats(_ClassGenerator);
 }
 
 Player NewPlayer()
@@ -59,16 +72,15 @@ Player NewPlayer()
 
 }
 
+void Display(const Player& display)
+{
+	std::cout << display.p_name << "|" << display.p_classid << "|" << display.p_classname << "|" << display.p_baseDMG << "|" << display.p_hp << "|" << display.p_maxHP << "\n";
+}
+
 
 int main()
 {
-
-	Player P_DATA = NewPlayer();
-	
-	//Monster wolf = NewMonster("wolf", 1, 2, 3);
-	//std::cout << wolf.m_hp;
-
-	std::cout << P_DATA.p_name << "|" << P_DATA.p_classid << "|" << P_DATA.p_classname << "|" << P_DATA.p_baseDMG;
-
+	Player init = NewPlayer();
+	Display(init);
 	
 }
