@@ -1,11 +1,46 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
+struct Weapon
+{
+	int w_ID = 0;
+	std::string w_NAME = "";
+	int w_DAMAGE = 0;
+	int w_COST = 0;
+};
+
+
+struct Equipment
+{
+	int e_ITEM_ID = 0;
+	int e_EQ_SLOT = 0;
+	
+	std::string e_ITEM_NAME = "";
+	std::string e_ITEM_TYPE = "";
+};
+
+
+struct Inventory
+{
+	int i_ITEM_ID = 0;
+	int i_INVENTORY_SLOT = 0;
+	int i_ITEM_COUNT = 0;
+	
+	std::string i_ITEM_NAME = "";
+};
+
 
 struct Player
 {
-	int p_hp = 0, p_maxHP = 0, p_baseDMG = 10, p_vitality = 0, p_inteligence = 0, p_strenght = 0, p_dexerity = 0, p_baseEXP = 0, p_requiredEXP = 0, p_classid = 0, p_armor = 0;
+	int p_hp = 0, p_maxHP = 0, p_baseDMG = 10, p_vitality = 0, p_inteligence = 0, p_strenght = 0, p_dexerity = 0, p_baseEXP = 0, p_requiredEXP = 0, p_classid = 0, p_armor = 0, p_WeaponDamage = 0;
 	
 	std::string p_name = "", p_classname = "";
+
+	std::vector<Weapon> Weapons;
+
+	Equipment Equipment;
+	Inventory Inventory;
 };
 
 struct Monster
@@ -14,6 +49,11 @@ struct Monster
 	
 	std::string m_name = "";
 };
+
+void NewWeapon(int W_ID, std::string W_NAME, int W_DAMAGE, int W_COST, Player& WEAPON_DATA)
+{	
+	WEAPON_DATA.Weapons.push_back({ W_ID, W_NAME, W_DAMAGE, W_COST });
+}
 
 Monster NewMonster(std::string M_NAME, int M_HP, int M_MAXHP, int M_DMG)
 {
@@ -74,13 +114,37 @@ Player NewPlayer()
 
 void Display(const Player& display)
 {
-	std::cout << display.p_name << "|" << display.p_classid << "|" << display.p_classname << "|" << display.p_baseDMG << "|" << display.p_hp << "|" << display.p_maxHP << "\n";
+	std::cout << display.p_name << "|" << display.p_classid << "|" << display.p_classname << "|" << display.p_baseDMG << "|" << display.p_hp << "|" << "\n";
+	
+	std::cout << display.p_name << "| weapons: ";
+	for (const auto& wep : display.Weapons)
+	{
+		std::cout << wep.w_NAME << "|";
+	}
 }
 
+bool EQSLOT_isEmpty(Player& Slot)
+{
+	if (Slot.Equipment.e_EQ_SLOT == 0){return true;}
+	else { return false; }
+}
 
 int main()
 {
 	Player init = NewPlayer();
-	Display(init);
 	
+	NewWeapon(1, "Sword", 50, 1, init);
+	NewWeapon(2, "Sword2", 50, 1, init);
+	NewWeapon(3, "Sword3", 50, 1, init);
+	NewWeapon(4, "Sword4", 50, 1, init);
+	
+	//init.Equipment.e_EQ_SLOT = 1;
+
+	if (EQSLOT_isEmpty(init))
+	{
+		std::cout << "Test is True" << std::endl;
+	}
+	else{ std::cout << "Test is False" << std::endl; }
+	
+	Display(init);
 }
